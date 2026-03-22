@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Ocean Tobacco & Vape | Arlington</title>
+
+<style>
+:root {
+    --primary: #ff6a00;
+    --secondary: #ffb400;
+    --bg: #0a0a0b;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: #fff;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 106, 0, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 180, 0, 0.1) 0%, transparent 40%);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Age Popup Overlay */
+#agePopup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: none; /* Controlled by JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.popup-content {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Bubble Cards */
+.bubble-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 35px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.bubble-card:hover {
+    transform: translateY(-5px);
+    border: 1px solid var(--primary);
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--primary);
+}
+
+header h1 { color: #000; font-size: 22px; margin: 0; font-weight: 900; text-transform: uppercase; }
+
+/* Mobile Nav */
+.nav-menu { display: none; position: absolute; top: 58px; left: 0; width: 100%; background: #fff; flex-direction: column; }
+.nav-menu.active { display: flex; }
+.nav-menu a { color: #000; padding: 20px; text-decoration: none; font-weight: bold; border-top: 1px solid #eee; }
+
+/* Hero */
+.hero { padding: 100px 20px 50px; text-align: center; }
+.hero h2 {
+    font-size: 42px;
+    background: linear-gradient(to right, #fff, var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+}
+
+/* Category Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+.category-bubble {
+    background: rgba(255, 106, 0, 0.1);
+    border: 1px solid var(--primary);
+    padding: 15px;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn-glow {
+    display: inline-block;
+    padding: 16px 35px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 106, 0, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-glow:hover {
+    box-shadow: 0 0 25px rgba(255, 106, 0, 0.7);
+    transform: scale(1.05);
+}
+
+/* Reviews */
+.review-bubble {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--secondary);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* FDA Warning */
+.fda-warning {
+    background: #fff;
+    color: #000;
+    padding: 20px;
+    text-align: center;
+    font-weight: 900;
+    border: 4px solid #000;
+    margin: 40px 20px;
+    text-transform: uppercase;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="agePopup">
+    <div class="bubble-card popup-content" style="text-align: center; max-width: 400px; border: 2px solid var(--primary);">
+        <h1 style="color: var(--secondary); margin-bottom: 10px; font-weight: 900; letter-spacing: 1px;">21+ ONLY</h1>
+        <p style="opacity: 0.9; margin-bottom: 25px; line-height: 1.6;">
+            Gold Ocean Tobacco & Vape requires visitors to be of legal age. <br>
+            <strong>Are you 21 or older?</strong>
+        </p>
+        
+        <button class="btn-glow" onclick="verifyAge()" style="width: 100%; margin-bottom: 15px;">I AM 21 OR OLDER</button>
+        
+        <a href="https://google.com" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 12px; font-weight: bold; display: block;">EXIT SITE</a>
+    </div>
+</div>
+
+<header>
+    <h1>GOLD OCEAN</h1>
+    <div style="color:#000; font-size: 24px; cursor:pointer;" onclick="toggleNav()">☰</div>
+    <nav class="nav-menu" id="mobileNav">
+        <a href="#" onclick="toggleNav()">Home</a>
+        <a href="#inventory" onclick="toggleNav()">Inventory</a>
+        <a href="#reviews" onclick="toggleNav()">Reviews</a>
+        <a href="#location" onclick="toggleNav()">Location</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div style="background:rgba(255,255,255,0.1); display:inline-block; padding:5px 15px; border-radius:20px; font-size:12px; font-weight:bold;">ARLINGTON, TX</div>
+    <h2>Elevated Vape Culture</h2>
+    <p style="opacity:0.7;">Premium hardware, exotic juices, and expert service.</p>
+</section>
+
+<div class="section" style="max-width: 900px; margin: auto; padding: 0 20px;">
+
+    <div class="bubble-card" id="inventory">
+        <h3 style="margin-top:0;">Premium Selection</h3>
+        <div class="grid">
+            <div class="category-bubble">Disposables</div>
+            <div class="category-bubble">E-Liquids</div>
+            <div class="category-bubble">Hardware</div>
+            <div class="category-bubble">Glass Art</div>
+            <div class="category-bubble">CBD / Delta</div>
+            <div class="category-bubble">Hookah</div>
+        </div>
+    </div>
+
+    <div class="bubble-card" id="reviews">
+        <h3 style="color: var(--secondary); margin-top:0;">⭐ 4.8 Rating (99+ Reviews)</h3>
+        <div class="review-bubble">"Great customer service, very helpful staff. Best shop in Arlington."</div>
+        <div class="review-bubble">"Always stocked with the newest disposables. Quick service."</div>
+        <div class="review-bubble">"Best prices in the area. Friendly vibes every time."</div>
+        <div style="text-align: center;">
+            <a href="https://m.yelp.com/biz/gold-ocean-tobacco-and-vape-arlington" target="_blank" style="color: var(--secondary); font-size: 12px; font-weight: bold; text-decoration: none;">VIEW ALL REVIEWS ON YELP →</a>
+        </div>
+    </div>
+
+    <div class="bubble-card" id="location" style="text-align: center;">
+        <h3 style="margin-top:0;">Visit the Shop</h3>
+        <p>📍 2131 N Collins St, Arlington, TX 76011</p>
+        <p>📞 (682) 252-4623</p>
+        <p>⏰ 10:00 AM — 10:00 PM Daily</p>
+        <a href="https://maps.google.com/?q=Gold+Ocean+Tobacco+Vape+Arlington" class="btn-glow" target="_blank">START NAVIGATION</a>
+    </div>
+
+</div>
+
+<div class="fda-warning">
+    WARNING: This product contains nicotine. Nicotine is an addictive chemical.
+</div>
+
+<footer>
+    © 2026 Gold Ocean Tobacco & Vape. Strictly 21+ only. ID Required.
+</footer>
+
+<script>
+// Toggle Mobile Navigation
+function toggleNav() {
+    document.getElementById("mobileNav").classList.toggle("active");
+}
+
+// Age Verification Logic
+function verifyAge() {
+    // Save to sessionStorage (lasts until browser tab is closed)
+    sessionStorage.setItem("gold_ocean_verified", "true");
+    
+    const popup = document.getElementById("agePopup");
+    popup.style.opacity = "0";
+    popup.style.visibility = "hidden";
+    
+    // Enable scrolling once verified
+    document.body.style.overflow = "auto";
+}
+
+window.onload = function() {
+    const isVerified = sessionStorage.getItem("gold_ocean_verified");
+    const popup = document.getElementById("agePopup");
+
+    if (isVerified === "true") {
+        popup.style.display = "none";
+        document.body.style.overflow = "auto";
+    } else {
+        popup.style.display = "flex";
+        // Lock scrolling so they can't see the site contents
+        document.body.style.overflow = "hidden";
+    }
+}
+</script>
+
+</body>
+</html>
